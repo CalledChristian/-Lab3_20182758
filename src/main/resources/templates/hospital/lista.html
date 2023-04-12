@@ -1,0 +1,96 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="icon" th:href="@{/img/icon.png}" type="image/x-icon" />
+        <title>Beta Clinica</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
+    </head>
+    <body>
+        <div class='container'>
+
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                    <a class="navbar-brand" th:href="@{/}">
+                        <img th:src="@{/img/icon.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                        GameShop3
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app" aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbar-app">
+                        <!--<ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#/user/signIn">Ingresar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#/user/signUp">Registrarse</a>
+                            </li>
+                        </ul>-->
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" th:href="@{/hospitales}">Hospitales</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" th:href="@{/doctores/lista}">Doctores</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" th:href="@{/pacientes/lista}">Pacientes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+
+            <div id="content">
+                <main>
+                    <!-- Contenido -->
+                    <div class="page-header text-center">
+                        <h1>Lista de Hospitales</h1>
+                    </div>
+                    <div class="container-fluid">
+
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Telefóno</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="hosp,indice:${listaHospitales}">
+                                    <td th:text="${indice.index + 1}"></td>
+                                    <td th:text="${hosp.nombre}"></td>
+                                    <td th:text="${hosp.direccion}"></td>
+                                    <td th:text="${hosp.telefono}"></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostardoctores' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Doctores</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostarpacientes' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Pacientes</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /Contenido -->
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">PUCP @ 2022</div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </body>
+</html>
