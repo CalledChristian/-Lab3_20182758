@@ -42,7 +42,7 @@
                 <main>
                     <!-- Contenido -->
                     <div class="page-header text-center">
-                        <h1>Lista de Hospitales</h1>
+                        <h1>Lista de Doctores - Hospital" </h1>
                     </div>
                     <div class="container-fluid">
 
@@ -52,20 +52,14 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Telefóno</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Especialidad</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="hosp,indice:${listaHospitales}">
+                                <tr th:each="doc,indice:${listaHospitalesDoctores}">
                                     <td th:text="${indice.index + 1}"></td>
-                                    <td th:text="${hosp.nombre}"></td>
-                                    <td th:text="${hosp.direccion}"></td>
-                                    <td th:text="${hosp.telefono}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostrardoctores' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Doctores</a></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostrarpacientes' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Pacientes</a></td>
+                                    <td th:text="${doc.nombre}"></td>
+                                    <td th:text="${doc.especialidad}"></td>
                                 </tr>
                             </tbody>
                         </table>

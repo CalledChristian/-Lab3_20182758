@@ -1,11 +1,11 @@
 package com.example.demo.hospital;
 
+import com.example.demo.doctor.Doctor;
+import com.example.demo.doctor.DoctorController;
+import com.example.demo.paciente.Paciente;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +19,32 @@ public class HospitalController {
         this.hospitalRepository= hospitalRepository;
     }
 
+
+
+
     @GetMapping(value={"/","/hospitales"})
     public String listaHospitales (Model model){
         List<Hospital> lista = hospitalRepository.findAll();
         model.addAttribute("listaHospitales",lista);
         return "hospital/lista";
     }
+
+    @GetMapping("/hospitales/mostrardoctores")
+    public String listaHospitalesDoctores (Model model, @RequestParam("id") int idHospital){
+        List<Doctor> lista_d = hospitalRepository.buscarDoctorPorHospital(idHospital);
+        System.out.println(lista_d.get(1));
+        model.addAttribute("listaHospitalesDoctores",lista_d);
+        //model.addAttribute("nameHospital", nombreHospital);
+        return "hospital/listadoctores";
+    }
+
+    @GetMapping("/hospitales/mostrarpacientes")
+    public String listaHospitalesPacientes (Model model, @RequestParam("id") int idHospital){
+        List<Paciente> lista_p = hospitalRepository.buscarPacientePorHospital(idHospital);
+        model.addAttribute("listaHospitalesPacientes",lista_p);
+        return "hospital/listapacientes";
+    }
+
 
     /*@GetMapping("/distribuidoras/editar")
     public String editarDistribuidoras(Model model, @RequestParam("id") int id){
