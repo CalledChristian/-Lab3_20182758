@@ -22,6 +22,6 @@ public interface PacienteRepository extends JpaRepository<Paciente,Integer> {
     List<Paciente> buscarProximasCitas (int idDoctor);
 
     @Modifying
-    @Query(value="update paciente set numero_habitacion = ?1 where id= ?1; ",nativeQuery = true)
+    @Query(value="update paciente set numero_habitacion = ?1 where id= ?2; ",nativeQuery = true)
     void actualizarHabitacion (int nrohabitacion,int idPaciente);
 }
