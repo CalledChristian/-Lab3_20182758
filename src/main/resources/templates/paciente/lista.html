@@ -42,7 +42,7 @@
                 <main>
                     <!-- Contenido -->
                     <div class="page-header text-center">
-                        <h1>Lista de Hospitales</h1>
+                        <h1>Lista de Pacientes</h1>
                     </div>
                     <div class="container-fluid">
 
@@ -52,20 +52,30 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Telefóno</th>
+                                    <th>Edad</th>
+                                    <th>Género</th>
+                                    <th>Diagnóstico</th>
+                                    <th>Fecha Cita</th>
+                                    <th>N* de Habitación</th>
+                                    <th>Doctor</th>
+                                    <th>Hospital</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="hosp,indice:${listaHospitales}">
+                                <tr th:each="p,indice:${listaPacientes}">
                                     <td th:text="${indice.index + 1}"></td>
-                                    <td th:text="${hosp.nombre}"></td>
-                                    <td th:text="${hosp.direccion}"></td>
-                                    <td th:text="${hosp.telefono}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostrardoctores' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Doctores</a></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostrarpacientes' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Pacientes</a></td>
+                                    <td th:text="${p.nombre}"></td>
+                                    <td th:text="${p.edad}"></td>
+                                    <td th:text="${p.genero}"></td>
+                                    <td th:text="${p.diagnostico}"></td>
+                                    <td th:text="${p.fechaCita}"></td>
+                                    <td th:text="${p.numHabitacion}"></td>
+                                    <td th:text="${doctor.doctorDePaciente(p.idDoctor).getNombre()}"></td>
+                                    <td th:text="${hospital.hospitalDePaciente(p.idHospital).getNombre()}"></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/pacientes/editarpaciente' + '?id=' + ${p.getIdPaciente()}}">Editar Paciente</a></td>
+                                    <!--<td><a class="btn btn-primary" th:href="@{'/pacientes/proximascitas' + '?id=' + ${doc.getIdDoctor()}}">Próximas Citas</a></td> -->
                                 </tr>
                             </tbody>
                         </table>

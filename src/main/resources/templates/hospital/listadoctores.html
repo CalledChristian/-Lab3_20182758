@@ -27,10 +27,10 @@
                                 <a class="nav-link" th:href="@{/hospitales}">Hospitales</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" th:href="@{/doctores/lista}">Doctores</a>
+                                <a class="nav-link" th:href="@{/doctores}">Doctores</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" th:href="@{/pacientes/lista}">Pacientes</a>
+                                <a class="nav-link" th:href="@{/pacientes}">Pacientes</a>
                             </li>
                         </ul>
                     </div>
@@ -42,7 +42,7 @@
                 <main>
                     <!-- Contenido -->
                     <div class="page-header text-center">
-                        <h1>Lista de Doctores - Hospital" </h1>
+                        <h1 th:text="|Lista de doctores - Hospital ${hospital.nombre}|"></h1>
                     </div>
                     <div class="container-fluid">
 
@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="doc,indice:${listaHospitalesDoctores}">
+                                <tr th:each="doc,indice:${doctores}">
                                     <td th:text="${indice.index + 1}"></td>
                                     <td th:text="${doc.nombre}"></td>
                                     <td th:text="${doc.especialidad}"></td>

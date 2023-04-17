@@ -3,19 +3,19 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link rel="icon" th:href="@{/img/icon.png}" type="image/x-icon" />
-        <title>Beta Clinica</title>
+        <title>CRUD Distribuidoras</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
     </head>
     <body>
+
         <div class='container'>
 
             <div>
                 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
                     <a class="navbar-brand" th:href="@{/}">
                         <img th:src="@{/img/icon.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-                        Sistema de Hospitales (BETA)
+                        GameShop3
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app" aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -37,50 +37,37 @@
                 </nav>
             </div>
 
-
             <div id="content">
                 <main>
                     <!-- Contenido -->
                     <div class="page-header text-center">
-                        <h1>Lista de Hospitales</h1>
+                        <h2>Editar Paciente</h2>
                     </div>
                     <div class="container-fluid">
+                        <form method="POST" th:action="@{/pacientes/guardar}">
+                            <!--el name del formulario debe ser igual al nombre del atributo de la entidad -->
+                            <input th:value="${paciente.getIdPaciente()}" name="idPaciente" type="hidden"/>
 
+                            <div class="mb-3">
+                                <label for="nom">Número de Habitación del Paciente </label>
+                                <input th:value="${paciente.numHabitacion}" name="numHabitacion" type="text" class="form-control" id="nom">
+                            </div>
 
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Telefóno</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="hosp,indice:${listaHospitales}">
-                                    <td th:text="${indice.index + 1}"></td>
-                                    <td th:text="${hosp.nombre}"></td>
-                                    <td th:text="${hosp.direccion}"></td>
-                                    <td th:text="${hosp.telefono}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostrardoctores' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Doctores</a></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/hospitales/mostrarpacientes' + '?id=' + ${hosp.getIdHospital()}}">Mostrar Pacientes</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <a th:href="@{/pacientes}" class="btn btn-danger">Cancelar</a>
 
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
                     </div>
-                    <!-- /Contenido -->
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">PUCP @ 2022</div>
-                        </div>
-                    </div>
-                </footer>
             </div>
+            <!-- /Contenido -->
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Colocar # Grupo - PUCP @ 2022</div>
+                    </div>
+                </div>
+            </footer>
         </div>
         <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
         <script th:src="@{/js/popper.min.js}"></script>

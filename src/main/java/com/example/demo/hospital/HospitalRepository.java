@@ -11,9 +11,14 @@ import java.util.List;
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital,Integer> {
 
-    @Query(value="select d.id,d.nombre,d.especialidad from doctor d left join hospital h on (d.hospital_id = h.id) where h.id= ?1 ",nativeQuery = true)
-    List<Doctor> buscarDoctorPorHospital (int idHospital);
+    //NOTAS:
+    //Por el momento para el Query , solo podemos usar Select * From (tabla)
+    //El repositorio Hospital , solo puede guardar elementos de clase Hospital
 
-    @Query(value="select nombre,edad,genero,diagnostico,fecha_cita,numero_habitacion from paciente where hospital_id= ?1 ",nativeQuery = true)
-    List<Paciente> buscarPacientePorHospital (int idHospital);
+    @Query(value="select * from hospital where id= ?1 ",nativeQuery = true)
+    Hospital hospitalDeDoctor(int idHospital);
+
+    @Query(value="select * from hospital where id= ?1 ",nativeQuery = true)
+    Hospital hospitalDePaciente (int idHospital);
+
 }
