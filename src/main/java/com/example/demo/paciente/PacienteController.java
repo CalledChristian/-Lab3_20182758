@@ -51,6 +51,7 @@ public class PacienteController {
 
 
     @PostMapping("/pacientes/guardar")
+    @Transactional
     public String guardarPaciente(Paciente paciente , @RequestParam("idPaciente") int idP ,@RequestParam("numHabitacion") int nroabitacion){
             pacienteRepository.actualizarHabitacion(nroabitacion,idP);
             return "redirect:/pacientes";
